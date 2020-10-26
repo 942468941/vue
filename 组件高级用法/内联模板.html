@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内联模板</title>
+</head>
+
+<body>
+    <!-- 组件的模板 般都是在 template 选项内定义的， ue 提供了 个内联模板的功能，在使用组
+件时，给组件标签使用 inline- mplate 特性，组件就会把它的内容当作模板，而不是把它当内容分
+发，这让模板更灵活。 -->
+    <div id="app">
+        <child-component inline-template>
+            <div>
+                <h2>在父组件中定义子组件的模板</h2>
+                    <p>{{ message }}</p>
+                    <p>{{ msg }}</p>
+            </div>
+        </child-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+    <script>
+        Vue.component('child-component',{
+            data:function(){
+                return{
+                    msg:'在子组件声明的数据'
+                }
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: '在父组件声明的数据'
+            }
+        });
+    </script>
+</body>
+
+</html>

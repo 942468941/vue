@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件用法</title>
+</head>
+<body>
+    <div id="app">
+        <my-componment></my-componment>
+        <my-componment></my-componment>
+        <my-componment></my-componment>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+    <script>
+        Vue.component('my-componment',{
+            template:'<button @click="counter++">{{counter}}</button>',
+            data:function(){
+                return {
+                    counter:0
+                }
+            }
+        });
+        var app = new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>

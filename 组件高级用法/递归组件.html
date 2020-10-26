@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>递归组件</title>
+</head>
+
+<body>
+    <!-- 组件在它的模板内可以递归地调用自己 只要给组件设置 name 选项就可以了 -->
+    <div id="app">
+        <child-component :count="1"></child-component>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('child-componment', {
+            name:'child-component',
+            props:{
+                count:{
+                    type:Number,
+                    default:1
+                }
+            },
+            template: `
+<div class= "child" >
+<child-component
+:count="count + 1"
+v-if= "count < 3" ></child-component>
+</div>`,
+            
+        });
+        var app = new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>

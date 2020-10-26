@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>render函数</title>
+</head>
+<body>
+    <div id="app">
+        <ele></ele>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app'
+        })
+        var Child={
+            render:function(createElement){
+                return createElement('p','text');
+            }
+        };
+        Vue.component('ele',{
+            render:function(createElement){
+                return createElement('div',
+                    Array.apply(null,{
+                        length:5
+                    }).map(function(){
+                        return createElement(Child);
+                    })
+                )
+            }
+        })
+    </script>
+</body>
+</html>

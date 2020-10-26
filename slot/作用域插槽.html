@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域插槽</title>
+</head>
+<body>
+    <!-- 作用域插槽是 种特殊的 slot ，使用 个可以复用的模板替换己渲染元素。 -->
+    <div id="app">
+        <child-component>
+            <template scope="props">
+                <p>来自父组件的内容</p>
+                <p>{{props.msg}}</p>
+            </template>
+        </child-component>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+    <script>
+        Vue.component('child-component',{
+            template:`<div class="container">
+            <slot msg="来自子组件的内容"></slot>
+        </div>`,
+        })
+        var app = new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>
