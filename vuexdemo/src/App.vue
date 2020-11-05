@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Box from './vuexdemo/Box'
+import Box from './todolist/Box'
 
 export default {
   name: 'App',

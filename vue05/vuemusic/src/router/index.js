@@ -16,13 +16,13 @@ const routes = [
 
     path:'/singer',
     component:Singer,
-    children:[
-      {
-        path:':singermid',
-        name:'detail',
-        // component:Detail
-      }
-    ]
+    // children:[
+    //   {
+    //     path:':singermid',
+    //     name:'detail',
+    //     // component:Detail
+    //   }
+    // ]
     },{
       name:'c',
       path:'/rank',

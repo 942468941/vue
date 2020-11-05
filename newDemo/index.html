@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        {{message}}
+        <div :id="message"></div>
+        <todo-list></todo-list>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('todo-item', {
+            props: {
+                title: String,
+                del: {
+                    type: Boolean,
+                    default: false
+                }
+            },
+            template: `
+            <li>
+                <span v-if="del">{{title}}</span>
+                <span v-else style="text-decoration: line-through;">{{title}}</span>
+                <button v-show="del" @click.stop="handleClick">删除</button>
+            </li>
+            `,
+            data: function () {
+                return {
+
+                }
+            },
+            methods: {
+                handleClick(){
+                    console.log(this)
+                    this.$emit('delete',this.title)
+                }
+            },
+
+        })
+        Vue.component('todo-list', {
+            template: `
+            <ul>
+                <todo-item @delete="handleDelete" v-for="item in list" :key="item.title" :title="item.title" :del="item.del"></todo-item>
+            </ul>
+            `,
+            data: function () {
+                return {
+                    list: [{
+                        title: '课程1',
+                        del: false
+                    },
+                    {
+                        title: '课程2',
+                        del: true
+                    }
+                    ]
+                }
+            },
+            methods: {
+                handleDelete(val){
+                    console.log(val)
+                }
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '2222',
+
+            }
+        })
+    </script>
+</body>
+
+</html>
